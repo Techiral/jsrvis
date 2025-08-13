@@ -12,5 +12,27 @@
       using the provided secret key for authentication.
     -->
     <script id="omnidimension-web-widget" async src="https://backend.omnidim.io/web_widget.js?secret_key=4344d0d71f630f3f8b13388f6c0aeb3e" ></script>
+
+    <!-- 
+      This new script block will request access to the user's microphone.
+      When the page loads, the browser will display a pop-up asking for permission.
+      - navigator.mediaDevices.getUserMedia() is the standard way to ask for camera and microphone access.
+      - { audio: true } specifies that we only need the microphone.
+      - The .then() and .catch() parts handle what happens after the user responds to the permission request.
+    -->
+    <script>
+      // When the page loads, try to access the microphone
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          // This code runs if the user grants microphone access
+          console.log('Microphone access granted!');
+          // You can now use the 'stream' object to get audio data
+        })
+        .catch(function(err) {
+          // This code runs if the user denies access or an error occurs
+          console.log('Microphone access denied or an error occurred: ' + err);
+        });
+    </script>
+
 </body>
 </html>
